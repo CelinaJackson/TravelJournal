@@ -1,3 +1,3 @@
-class Trips < ActiveRecod::Base 
+class Trip < ActiveRecod::Base 
     belongs_to :user
 end 
