@@ -5,4 +5,6 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end 
 
 use Rack::MethodOverride
+use TripsController
+use UsersController
 run ApplicationController 
