@@ -19,7 +19,7 @@ class TripsController < ApplicationController
       erb :'trips/edit'
     end
   
-    post "/bags/:id" do
+    post "/trips/:id" do
       redirect_if_not_logged_in
       @trip = Trips.find(params[:id])
       unless Trips.valid_params?(params)
