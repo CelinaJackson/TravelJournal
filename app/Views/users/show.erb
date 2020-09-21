@@ -1,0 +1,6 @@
+<p>Your Travel Journal Entries, <%= @user.username %> 
+<% @user.trips.each do |trip| %> </p>
+    <ul> 
+    <li><a href="/trips/<%=trip.id%>"><%= trip.name %></a></li>
+    </ul>
+<% end %>
