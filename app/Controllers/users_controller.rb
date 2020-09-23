@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       if !@user.nil? && @user == current_user
        erb :'/users/show.html'
       else
-        redirect '/views/trips'
+        redirect '/trips'
       end 
     end 
 
@@ -17,15 +17,15 @@ class UsersController < ApplicationController
       if !session[:user_id]
           erb :'/users/signup.html'
       else
-        redirect to '/views/trips'
+        redirect '/trips'
       end 
     end 
     
     post '/signup.html' do 
-       if params[:username] == "" || params[:password] == ""
+       if params[:email] == "" || params[:password] == ""
         redirect to '/users/signup.html'
        else
-         @user = User.create(:username => params[:username], :password => params[:password])
+         @user = User.create(:email => params[:email], :password => params[:password])
          session[:user_id] = @user.id
          redirect '/views/trips'
         end 
@@ -34,28 +34,28 @@ class UsersController < ApplicationController
     get '/login.html' do 
       @error_message = params[:error]
       if !session[:user_id]
-        erb :"/sessions/login.html"
+        erb :'/sessions/login.html'
       else
         redirect '/views/trips'
       end 
     end 
     
     post '/login.html' do
-      user = User.find_by(:username => params[:username])
+      user = User.find_by(:email => params[:email])
       if user && user.authenticate(params[:password])
         session[:user_id] = user.id
-        redirect "/views/trips"
+        redirect '/views/trips'
       else
-       redirect to '/users/signup.html'
+       redirect '/users/signup.html'
       end 
     end 
     
     get '/logout' do
       if session[:user_id] != nil
         session.destroy
-        redirect to '/sessions/login.html'
+        redirect '/sessions/login.html'
       else
-        redirect to '/views/layout'
+        redirect '/views/layout'
       end 
     end 
 end 
