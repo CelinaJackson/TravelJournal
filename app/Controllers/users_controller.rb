@@ -2,12 +2,12 @@ class UsersController < ApplicationController
 
     get '/users/:id' do
        if !logged_in?
-        redirect '/trips'
+        redirect '/trips/show.html'
        end 
     
       @user = User.find(params[:id])
       if !@user.nil? && @user == current_user
-       erb :'users/show'
+       erb :'users/show.html'
       else
         redirect '/trips'
       end 
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     get '/signup' do
       if !session[:user_id]
-          erb :'users/new'
+          erb :'users/signup.html'
       else
         redirect to '/trips'
       end 
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     get '/login' do 
       @error_message = params[:error]
       if !session[:user_id]
-        erb :'users/login'
+        erb :"users/login.html"
       else
         redirect '/trips'
       end 
