@@ -6,17 +6,17 @@ class TripsController < ApplicationController
       erb :'trips/index'
     end
   
-    get "/trips/new" do
+    get "/trips/new.html" do
       redirect_if_not_logged_in
       @error_message = params[:error]
-      erb :'trips/new'
+      erb :'trips/new.html'
     end
   
     get "/trips/:id/edit" do
       redirect_if_not_logged_in
       @error_message = params[:error]
       @trip = Trip.find(params[:id])
-      erb :'trips/edit'
+      erb :'trips/edit.html'
     end
   
     post "/trips/:id" do
@@ -32,7 +32,7 @@ class TripsController < ApplicationController
     get "/trips/:id" do
       redirect_if_not_logged_in
       @trip = Trip.find(params[:id])
-      erb :'trips/show'
+      erb :'trips/show.html'
     end
   
     post "/trips" do

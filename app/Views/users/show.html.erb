@@ -1,9 +1,9 @@
 <!DOCTYPE html>
  <html>
-   <p>Your Travel Journal Entries, <%= @user.username %> 
+   <p>Your Travel Journal Entries, <%= @user.email %> 
    <% @user.trips.each do |trip| %> </p>
     <ul> 
-     <li><a href="/trips/<%=trip.id%>"><%= trip.name %></a></li>
+     <li><a href="/trips/<%=trip.id%>"><%= trip.location %></a></li>
     </ul>
    <% end %>
 
