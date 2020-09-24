@@ -21,7 +21,7 @@ class ApplicationController < Sinatra::Base
       if logged_in?
         redirect to '/trips'
       else 
-        erb :'/login'
+        erb :login
       end 
     end 
 
@@ -37,7 +37,7 @@ class ApplicationController < Sinatra::Base
 
     get '/signup' do 
       if !logged_in?
-        erb :'/signup'
+        erb :signup
       else 
         redirect to '/trips'
       end 
