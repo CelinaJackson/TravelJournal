@@ -39,7 +39,7 @@ class ApplicationController < Sinatra::Base
       if !logged_in?
         erb :signup
       else 
-        redirect to '/trips'
+        redirect to '/login'
       end 
     end 
 
