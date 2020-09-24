@@ -10,17 +10,70 @@ class ApplicationController < Sinatra::Base
     end
     
     get '/' do 
-      erb :'/layout'
+      if logged_in?
+        redirect to '/trips'
+      else 
+        erb :welcome
+      end 
     end 
 
-    get '/signup.html' do
-      erb :'/users/signup.html'
-    end
+    get '/login' do 
+      if logged_in?
+        redirect to '/trips'
+      else 
+        erb :'/login'
+      end 
+    end 
+
+    post '/login' do 
+      @user = User.find_by(email: params["email"])
+      if !!@user && @user.authenticate(params["password"])
+        session[:user_id] = @user.id 
+        redirec to '/trips'
+      else 
+        redirect to '/signup'
+      end 
+    end 
+
+    get '/signup' do 
+      if !logged_in?
+        erb :'/signup'
+      else 
+        redirect to '/trips'
+      end 
+    end 
+
+    post '/signup' do 
+      @user = User.new(params)
+      if @user.save 
+        @session = session 
+        @session[:user_id] = @user.id 
+        redirect to '/trips'
+      elsif params["email"] == "" || params["password"] == ""
+        redirect to '/signup'
+      elsif User.find_by(email: params["email"])
+        redirect to '/signup'
+      else 
+        redirect to '/signup'
+      end 
+    end 
+
+
+    get '/logout' do 
+      if logged_in?
+        session.clear
+        redirect to '/'
+      else 
+        erb :login
+      end 
+    end 
+
+
 
     helpers do
       def redirect_if_not_logged_in
         if !logged_in?
-          redirect "/login?error=You have to be logged in to do that"
+          redirect to "/login?error=You have to be logged in to do that"
         end
       end
   
