@@ -8,13 +8,12 @@
       <% if logged_in? %>
        <a href="/trips/new">Create New Journal Entry</a>
        <a href="/show">See All Previous Journal Entries</a>
-       <a href="/logout">Logout</a>
+       <a style="color:#008B8B" href="/logout">Logout</a>
        <p> Welcome, <%= current_user.username %></p>
      
       <% else %>
        <a style="color:#008B8B" href="/login">Login</a>
        <a style="color:#008B8B" href="/signup">Signup</a>
-       <a style="color:#008B8B" href="/logout">Logout</a>
       <% end %>   
   </body> 
 </html>
