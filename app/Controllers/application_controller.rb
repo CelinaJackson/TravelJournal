@@ -39,23 +39,15 @@ class ApplicationController < Sinatra::Base
       if !logged_in?
         erb :signup
       else 
-        redirect to '/login'
+        redirect to '/trips'
       end 
     end 
 
     post '/signup' do 
-      @user = User.new(params)
-      if @user.save 
-        @session = session 
-        @session[:user_id] = @user.id 
-        redirect to '/trips'
-      elsif params["email"] == "" || params["password"] == ""
-        redirect to '/signup'
-      elsif User.find_by(email: params["email"])
-        redirect to '/signup'
-      else 
-        redirect to '/signup'
-      end 
+      @user = User.new(name: params["name"], email: params["email"], password: params["password"])
+      @user.save  
+      session[:user_id] = @user.id 
+      redirect to '/trips' 
     end 
 
 
