@@ -36,11 +36,9 @@ class ApplicationController < Sinatra::Base
     end 
 
     get '/signup' do 
-      if !logged_in?
+     redirect to '/trips' if logged_in?
+      @user = User.new
         erb :signup
-      else 
-        redirect to '/trips'
-      end 
     end 
 
     post '/signup' do 
@@ -74,7 +72,7 @@ class ApplicationController < Sinatra::Base
       end
   
       def current_user
-        User.find(session[:user_id])
+        User.find(session[:user_id]) if session[:user_id]
       end
   
     end

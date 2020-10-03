@@ -7,10 +7,9 @@
   <body>
       <% if logged_in? %>
        <a href="/trips/new">Create New Journal Entry</a><br>
-       <a href="/trips/show">See All Previous Journal Entries</a><br>
        <a style="color:#008B8B" href="/logout">Logout</a>
        <p> Welcome, <%= current_user.name %></p>
-     
+       
       <% else %>
        <a style="color:#008B8B" href="/login">Login</a>
        <a style="color:#008B8B" href="/signup">Signup</a>

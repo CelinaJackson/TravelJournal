@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
 
     validates :email, :presence => true, :uniqueness => true, :format => {:with => /\w+@\w+\.\w+/}
     
-    has_many :trip
+    has_many :trips
  
 end 
