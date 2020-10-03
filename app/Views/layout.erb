@@ -6,10 +6,10 @@
   <h1 style="color:#CD853F">Welcome to Travel Journal</h1>
   <body>
       <% if logged_in? %>
-       <a href="/trips/new">Create New Journal Entry</a>
-       <a href="/show">See All Previous Journal Entries</a>
+       <a href="/trips/new">Create New Journal Entry</a><br>
+       <a href="/trips/show">See All Previous Journal Entries</a><br>
        <a style="color:#008B8B" href="/logout">Logout</a>
-       <p> Welcome, <%= current_user.username %></p>
+       <p> Welcome, <%= current_user.name %></p>
      
       <% else %>
        <a style="color:#008B8B" href="/login">Login</a>
