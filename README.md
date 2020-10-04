@@ -1,4 +1,4 @@
-Travel Journal 
+#Travel Journal 
 
 A platform for travellers to keep track of and reflect on trips they've taken.
 
