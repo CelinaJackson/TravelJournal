@@ -3,14 +3,20 @@
   <head>
     <title>Travel Journal</title>
   </head>
+  <style>
+    h1 {text-align: center;}
+    p {text-align: center;}
+    body {text-align: center;}
+  </style>  
   <h1 style="color:#CD853F">Welcome to Travel Journal</h1>
   <body>
       <% if logged_in? %>
-       <a href="/trips/new">Create New Journal Entry</a><br>
+       <a style="color:#008B8B" href="/trips/new">Create New Journal Entry</a><br>
        <a style="color:#008B8B" href="/logout">Logout</a>
        <p> Welcome, <%= current_user.name %></p>
        
       <% else %>
+      <p>Travel Journal was created for users to keep <br> track of and reflect on trips they have been on! <br> Login or signup to get started!</p>
        <a style="color:#008B8B" href="/login">Login</a>
        <a style="color:#008B8B" href="/signup">Signup</a>
       <% end %> 

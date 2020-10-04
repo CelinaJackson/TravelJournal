@@ -2,21 +2,33 @@ class TripsController < ApplicationController
 
     get '/trips' do
       redirect_if_not_logged_in
-      @trips = Trip.all
+      @trips = current_user.trips
       erb :'/trips/index'
     end
   
     get '/trips/new' do
       redirect_if_not_logged_in
-      @error_message = params[:error]
+      @error_message = params[:error]  
+      @trips = Trip.new(params)
       erb :'/trips/new'
+    end
+
+    get '/trips/:id' do
+      redirect_if_not_logged_in
+      @trips = Trip.find(params[:id])
+        redirect '/trips'
     end
   
     get '/trips/:id/edit' do
       redirect_if_not_logged_in
-      @error_message = params[:error]
+      # @error_message = params[:error]
       @trips = Trip.find(params[:id])
-      erb :'/trips/edit'
+      if logged_in? && @trips.user == current_user 
+        erb :'/trips/edit' 
+      else 
+
+        redirect '/trips'
+      end 
     end
 
     get '/trips/show' do 
@@ -24,21 +36,16 @@ class TripsController < ApplicationController
       erb :'/trips/show'
     end 
 
-    get '/trips/:id' do
-      redirect_if_not_logged_in
-      @trips = Trip.find(params[:id])
-        redirect '/trips'
-    end
-
 
     post '/trips' do
       redirect_if_not_logged_in
-      @trips = Trip.new(params)
-      unless @trips.save
-        redirect '/trips/new?error=invalid trip'
+      @trips = current_user.trips.build(params)
+      if @trips.save
+        redirect '/trips'
       end 
-      redirect '/trips'
+      redirect '/trips/new'
     end 
+ 
 
     delete '/trips/:id' do
       @trips = Trip.find_by_id(params[:id])

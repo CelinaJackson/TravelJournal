@@ -1,6 +1,6 @@
 <% @trips.collect do |trip| %>
-    <%= trip.location %><br>
-    <%= trip.description %><br>
-    <a href="/trips/<%=trip.id%>/edit">Edit</a>
+    Location of trip: <%= trip.location %><br>
+    Trip Description: <%= trip.description %><br>
+    <a style="color:#008B8B" href="/trips/<%=trip.id%>/edit">Edit</a>
     <br>
 <% end %>

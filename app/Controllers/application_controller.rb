@@ -31,6 +31,7 @@ class ApplicationController < Sinatra::Base
         session[:user_id] = @user.id 
         redirect to '/trips'
       else 
+        # @user = User.new(params[:user])
         redirect to '/signup'
       end 
     end 
@@ -62,7 +63,7 @@ class ApplicationController < Sinatra::Base
 
     helpers do
       def redirect_if_not_logged_in
-        if !logged_in?
+        if !current_user 
           redirect to "/login?error=You have to be logged in to do that"
         end
       end
@@ -72,7 +73,7 @@ class ApplicationController < Sinatra::Base
       end
   
       def current_user
-        User.find(session[:user_id]) if session[:user_id]
+        @user = User.find(session[:user_id]) if session[:user_id]
       end
 
       # def if_authorized_to_edit 
