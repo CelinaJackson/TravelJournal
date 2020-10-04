@@ -1,4 +1,5 @@
 class Trip < ActiveRecord::Base 
-  belongs_to :user
   validates_presence_of :location, :description
+
+  belongs_to :user
 end 

@@ -33,12 +33,21 @@ class TripsController < ApplicationController
 
     post '/trips' do
       redirect_if_not_logged_in
-      @trips = Trip.new(params)
-      unless @trips.save
+      @trip = Trip.new(params)
+      unless @trip.save
         redirect '/trips/new?error=invalid trip'
       end 
       redirect '/trips'
     end 
+  
+    post '/trips/:id' do
+      redirect_if_not_logged_in
+      if !@trips = Trip.find(params[:id])
+        redirect "/trips/#{@trips.id}/edit?error=invalid trip"
+      end
+      @trips.update(params.select{|k|k=="location" || k=="description"})
+      redirect "/trips/#{@trips.id}"
+    end
 
     delete '/trips/:id' do
       @trips = Trip.find_by_id(params[:id])
@@ -55,13 +64,5 @@ class TripsController < ApplicationController
       redirect '/trips'
     end 
 
-    post '/trips/:id' do
-      redirect_if_not_logged_in
-      if !@trips = Trip.find(params[:id])
-        redirect "/trips/#{@trips.id}/edit?error=invalid trip"
-      end
-      @trips.update(params.select{|k|k=="location" || k=="description"})
-      redirect "/trips/#{@trips.id}"
-    end
 
   end

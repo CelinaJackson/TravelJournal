@@ -74,18 +74,7 @@ class ApplicationController < Sinatra::Base
       def current_user
         User.find(session[:user_id]) if session[:user_id]
       end
-
-      # def if_authorized_to_edit 
-      #   # if current user is equal to the user who created the post 
-      #   # allow them to edit or delete the post 
-      #   # if current user is not equal to the user who created the post
-      #   # send message "you are not authorized to edit a post you didn't create"
-      #   if session[:user_id] == @trip[:user_id] 
-      #     @trip.update 
-      #   else 
-      #     "You are not authorized to edit a post you did not create."
-      #   end 
-      # end 
+  
     end
   
 end 
