@@ -31,12 +31,6 @@ class TripsController < ApplicationController
       end 
     end
 
-    get '/trips/show' do 
-      @trips = Trip.all
-      erb :'/trips/show'
-    end 
-
-
     post '/trips' do
       redirect_if_not_logged_in
       @trips = current_user.trips.build(params)
