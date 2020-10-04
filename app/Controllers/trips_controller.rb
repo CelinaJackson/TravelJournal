@@ -31,6 +31,12 @@ class TripsController < ApplicationController
       end 
     end
 
+    # get '/trips/:id' do	
+    #   redirect_if_not_logged_in	
+    #   @trips = Trip.find(params[:id])	
+    #     redirect '/trips'	
+    # end
+
     post '/trips' do
       redirect_if_not_logged_in
       @trips = current_user.trips.build(params)
