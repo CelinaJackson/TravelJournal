@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Travel Journal</title>
+  </head>
+  <h1 style="color:#CD853F">Welcome to Travel Journal</h1>
+  <body>
+      <% if logged_in? %>
+       <a href="/trips/new">Create New Journal Entry</a><br>
+       <a style="color:#008B8B" href="/logout">Logout</a>
+       <p> Welcome, <%= current_user.name %></p>
+       
+      <% else %>
+       <a style="color:#008B8B" href="/login">Login</a>
+       <a style="color:#008B8B" href="/signup">Signup</a>
+      <% end %> 
+      
+      <%= yield %> 
+  </body> 
+</html>
