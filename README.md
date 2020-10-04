@@ -1,8 +1,8 @@
-#Travel Journal 
+<h1>Travel Journal</h1> 
 
 A platform for travellers to keep track of and reflect on trips they've taken.
 
-Install 
+<h2>Install</h2> 
 
 1. Fork and clone the repository. 
 2. Load the repository in your development software.
