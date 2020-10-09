@@ -21,7 +21,6 @@ class TripsController < ApplicationController
   
     get '/trips/:id/edit' do
       redirect_if_not_logged_in
-      # @error_message = params[:error]
       @trips = Trip.find(params[:id])
       if logged_in? && @trips.user == current_user 
         erb :'/trips/edit' 
@@ -30,12 +29,6 @@ class TripsController < ApplicationController
         redirect '/trips'
       end 
     end
-
-    # get '/trips/:id' do	
-    #   redirect_if_not_logged_in	
-    #   @trips = Trip.find(params[:id])	
-    #     redirect '/trips'	
-    # end
 
     post '/trips' do
       redirect_if_not_logged_in
