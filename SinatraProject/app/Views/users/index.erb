@@ -1,9 +1,0 @@
-<h1>See what trips other members have went on: </h1>
-
-<ul>
-  <% @users.each do |user| %>
-    <% if user.id != @current_user.id %>
-     <li> <a href="users/<%=user.id%>"> <%= user.name %> </a></li><br>
-    <% end %>
- <% end %> 
-</ul>
