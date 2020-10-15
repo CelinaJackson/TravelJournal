@@ -1,0 +1,8 @@
+<h1>All Trips</h1>
+
+<% @trips.each do |trip| %>
+    Location of trip: <%= trip.location %><br>
+    <% if trip.user %>
+    Trip Created By: <%= trip.user.name %><br>
+    <% end %>
+    <% end %>

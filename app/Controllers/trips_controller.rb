@@ -13,6 +13,11 @@ class TripsController < ApplicationController
       erb :'/trips/new'
     end
 
+    get '/trips/all' do 
+      @trips = Trip.all
+      erb :'/trips/tripsall'
+     end 
+
     get '/trips/:id' do
       redirect_if_not_logged_in
       @trips = Trip.find(params[:id])
@@ -30,6 +35,7 @@ class TripsController < ApplicationController
       end 
     end
 
+
     post '/trips' do
       redirect_if_not_logged_in
       @trips = current_user.trips.build(params)
@@ -41,27 +47,35 @@ class TripsController < ApplicationController
  
 
     delete '/trips/:id' do
-      @trips = Trip.find_by_id(params[:id])
+      @trips = Trip.find(params[:id])
+      if @trips.user == current_user
       @trips.destroy
+      end 
       redirect '/trips'
     end
 
     patch '/trips/:id' do 
       redirect_if_not_logged_in
       @trips = Trip.find(params[:id])
+      if @trips.user == current_user
       @trips.location = params[:location]
       @trips.description = params[:description]
       @trips.save 
       redirect '/trips'
+      else 
+        redirect '/trips'
+      end
     end 
 
-    post '/trips/:id' do
-      redirect_if_not_logged_in
-      if !@trips = Trip.find(params[:id])
-        redirect "/trips/#{@trips.id}/edit?error=invalid trip"
-      end
-      @trips.update(params.select{|k|k=="location" || k=="description"})
-      redirect "/trips/#{@trips.id}"
-    end
+    # post '/trips/:id' do
+    #   redirect_if_not_logged_in
+    #   @trips = Trip.find(params[:id])
+    #   if @trips.user == current_user
+    #   if !@trips = Trip.find(params[:id])
+    #     redirect "/trips/#{@trips.id}/edit?error=invalid trip"
+    #   end
+    #   @trips.update(params.select{|k|k=="location" || k=="description"})
+    #   redirect "/trips/#{@trips.id}"
+    # end
 
   end
