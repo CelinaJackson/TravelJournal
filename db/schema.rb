@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_232630) do
+ActiveRecord::Schema.define(version: 2020_10_15_231525) do
 
   create_table "trips", force: :cascade do |t|
     t.string "location"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2020_10_09_232630) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "password"
     t.string "password_digest"
   end
 
